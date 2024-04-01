@@ -1,8 +1,6 @@
-package main
+package list
 
-import (
-	"fmt"
-)
+import "fmt"
 
 type List[T comparable] struct {
 	l []T
@@ -42,7 +40,7 @@ func (l *List[T]) RemoveAll() {
 }
 
 func (l *List[T]) ToString() string {
-	return fmt.Sprintf("%v", l.l)
+	return fmt.Sprint(l.l)
 }
 
 func (l *List[T]) Map(f func (t T) T) *List[T] {
@@ -83,6 +81,10 @@ func (l *List[T]) Contains(t T) bool {
 	}
 
 	return false
+}
+
+func (l *List[T]) Len() int {
+	return len(l.l)
 }
 
 func Fold[T comparable, R comparable](i T, l List[R], f func(t T, u R) T ) T {
